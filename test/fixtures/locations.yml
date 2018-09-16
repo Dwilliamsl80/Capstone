@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  agencyID: 1
+  state: MyString
+  zipCode: 1
+  city: MyString
+
+two:
+  agencyID: 1
+  state: MyString
+  zipCode: 1
+  city: MyString

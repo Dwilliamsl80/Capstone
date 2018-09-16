@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locationID: 1
+  apartmentName: MyString
+  numberOfRooms: 1
+
+two:
+  locationID: 1
+  apartmentName: MyString
+  numberOfRooms: 1
