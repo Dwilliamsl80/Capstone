@@ -1,4 +1,4 @@
 class Tenant < ApplicationRecord
-	has_many :apartments
+	has_many :apartment_complexes
 	belongs_to :user
 end

@@ -1,5 +1,4 @@
 class Apartment < ApplicationRecord
-	has_many :rooms
-	belongs_to :tenant
-	belongs_to :location
+	belongs_to :apartment_complex
+	has_many :renters
 end
