@@ -1,4 +1,4 @@
 class Renter < ApplicationRecord
-	belongs_to :room
+	belongs_to :apartment
 	belongs_to :user
 end

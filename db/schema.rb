@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 0) do
 
   create_table "agencies", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "agencyName", limit: 100
+    t.string "agency_name", limit: 100
   end
 
   create_table "agency_to_locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -23,27 +23,29 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["location_id"], name: "fk_AgenciesToLocations_to_location"
   end
 
-  create_table "apartments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "apartment_complexes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "tenant_id", null: false
     t.integer "location_id", null: false
-    t.string "apartmentName", limit: 50
-    t.integer "numberOfRooms"
-    t.index ["location_id"], name: "fk_Apartments_to_Location"
-    t.index ["tenant_id"], name: "fk_Apartments_to_Tenants"
+    t.string "apartment_complex_name", limit: 50
+    t.integer "number_of_apartments"
+    t.index ["location_id"], name: "fk_Apartment_Complexes_to_Location"
+    t.index ["tenant_id"], name: "fk_Apartment_Complexes_to_Tenants"
   end
 
   create_table "locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "state", limit: 2
-    t.integer "zipCode"
+    t.integer "zip_code"
     t.string "city", limit: 100
   end
 
   create_table "renters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "room_id", null: false
+    t.integer "apartment_id", null: false
     t.integer "user_id", null: false
-    t.string "firstName", limit: 50
-    t.string "lastName", limit: 50
-    t.index ["room_id"], name: "fk_Renter_to_Room"
+    t.string "first_name", limit: 50
+    t.string "last_name", limit: 50
+    t.datetime "contract_start"
+    t.datetime "contract_end"
+    t.index ["apartment_id"], name: "fk_Renter_to_Apartment"
     t.index ["user_id"], name: "fk_Renter_to_user"
   end
 
@@ -57,21 +59,26 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "user_id", null: false
     t.decimal "rating", precision: 2, scale: 1
     t.string "description", limit: 500
+    t.datetime "review_date"
     t.index ["reviewer_id"], name: "fk_Reviews_to_Reviewer"
     t.index ["user_id"], name: "fk_Reviews_to_User"
   end
 
-  create_table "rooms", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "apartment_id", null: false
-    t.integer "roomNumber"
+  create_table "apartments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "apartment_complex_id", null: false
+    t.integer "apartment_number"
+    t.integer "number_of_rooms"
+    t.integer "square_footage"
+    t.integer "number_of_bedrooms"
+    t.integer "number_of_bathrooms"
     t.decimal "price", precision: 10, scale: 2
-    t.index ["apartment_id"], name: "fk_Rooms_to_Apartment"
+    t.index ["apartment_complex_id"], name: "fk_Apartments_to_Apartment_Complex"
   end
 
   create_table "tenants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
-    t.string "firstName", limit: 50
-    t.string "lastName", limit: 50
+    t.string "first_name", limit: 50
+    t.string "last_name", limit: 50
     t.index ["user_id"], name: "fk_Tenant_to_User"
   end
 
@@ -95,13 +102,13 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_foreign_key "agency_to_locations", "agencies",  name: "fk_AgenciesToLocations_to_Agency"
   add_foreign_key "agency_to_locations", "locations", name: "fk_AgenciesToLocations_to_location"
-  add_foreign_key "apartments", "locations", name: "fk_Apartments_to_Location"
-  add_foreign_key "apartments", "tenants", name: "fk_Apartments_to_Tenants"
-  add_foreign_key "renters", "rooms", name: "fk_Renter_to_Room"
+  add_foreign_key "apartment_complexes", "locations", name: "fk_Apartment_Complexes_to_Location"
+  add_foreign_key "apartment_complexes", "tenants", name: "fk_Apartment_Complexes_to_Tenants"
+  add_foreign_key "renters", "apartments", name: "fk_Renter_to_Apartment"
   add_foreign_key "renters", "users", name: "fk_Renter_to_user"
   add_foreign_key "reviewers", "users", name: "fk_Reviewers_to_User"
   add_foreign_key "reviews", "reviewers", name: "fk_Reviews_to_Reviewer"
   add_foreign_key "reviews", "users", name: "fk_Reviews_to_User"
-  add_foreign_key "rooms", "apartments", name: "fk_Rooms_to_Apartment"
+  add_foreign_key "apartments", "apartment_complexes", name: "fk_Apartments_to_Apartment_Complex"
   add_foreign_key "tenants", "users", name: "fk_Tenant_to_User"
 end
