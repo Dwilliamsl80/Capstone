@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
  
-  #get "/login" => "pages#login"
-  #get "/register" => "pages#register"
-
+  
   root 'pages#index'
+  
 
   resources :tenanttousers
   resources :tenants
