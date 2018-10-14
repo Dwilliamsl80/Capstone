@@ -1,5 +1,6 @@
 class ApartmentComplexesController < ApplicationController
   before_action :set_apartmentComplex, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /apartmentComplexes
   # GET /apartmentComplexes.json

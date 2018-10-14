@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :apartments
   resources :agencies
 
+#devise_for :users, controllers: { registrations: "users/registrations" }
+
 devise_for :users do
   get '/users/sign_out' => 'devise/sessions#destroy'
 end

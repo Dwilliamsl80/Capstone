@@ -1,5 +1,6 @@
 class ReviewersController < ApplicationController
   before_action :set_reviewer, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /reviewers
   # GET /reviewers.json

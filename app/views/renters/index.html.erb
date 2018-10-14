@@ -1,123 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<p id="notice"><%= notice %></p>
 
+<h1>Renters</h1>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<table>
+  <thead>
+    <tr>
+      <th>Apartmentid</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Leasing</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @renters.each do |renter| %>
+      <tr>
+        <td><%= renter.apartment_id %></td>
+        <td><%= renter.first_name %></td>
+        <td><%= renter.last_name %></td>
+        <td><%= renter.leasing %></td>
+        <td><%= link_to 'Show', renter %></td>
+        <td><%= link_to 'Edit', edit_renter_path(renter) %></td>
+        <td><%= link_to 'Destroy', renter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
+<br>
 
-    <!-- Custom styles for this template -->
-    <%= stylesheet_link_tag "grayscale.min.css" %>
-
-<style>
-hr{
-  color:white;
-}
-button{
-
-  color:black;
-  background-color:white;
-}
-label
-{
-  color:white;
-}
-
-h2
-{
-  color:white;
-}
-
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-
-</style>
-<!------ Include the above in your HEAD tag ---------->
-</head>
-
-<body id="page-top">
-<header class="masthead">
-
-
-<br/>
-<br/>
-<br/>
-
-
-<div class="container bootstrap snippet">
-    <div class="row">
-  		<div class="col-sm-10"><h1>Jane Doe</h1></div>
-    	    </div>
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-              
-
-      <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload">
-      </div></hr><br>
-
-               
-                
-          
-                        
-          <div class="panel panel-default">
-                        <div class="panel-body">
-            	<i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-            </div>
-          </div>
-          
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-              
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="full_name"><u><h4>Full Name</h4></u></label>
-                             
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="Address"><u><h4>Address</h4></u></label>
-                                                        </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="Rating"><u><h4>Current Rating</h4></u></label>
-                                                       </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><u><h4>User Reviews</h4></u></label>
-                                                        </div>
-                      </div>
-      
-              	</form>
-              </div>
-               
-              </div><!--/tab-pane-->
-          </div><!--/tab-content-->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
-</section>
-                 </header>
-
-  </body>
-</html>
+<%= link_to 'New Renter', new_renter_path %>
