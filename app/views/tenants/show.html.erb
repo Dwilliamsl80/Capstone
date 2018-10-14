@@ -1,18 +1,24 @@
 <p id="notice"><%= notice %></p>
+		<!-- user with no image --> 
+      <% if @tenant.user.user_picture.blank? %>
+        <%= image_tag "blankProfile.png", :size => "200x200" %>
+      <%end if %>
 
-<p>
-  <strong>Apartmentid:</strong>
-  <%= @tenant.apartmentID %>
-</p>
+      <!-- user with image -->
+        <% if !@tenant.user.user_picture.blank? %>
+          <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
+        <%end if %>
+
+
 
 <p>
   <strong>Firstname:</strong>
-  <%= @tenant.firstName %>
+  <%= @tenant.first_name %>
 </p>
 
 <p>
   <strong>Lastname:</strong>
-  <%= @tenant.lastName %>
+  <%= @tenant.last_name %>
 </p>
 
 <%= link_to 'Edit', edit_tenant_path(@tenant) %> |

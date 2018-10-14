@@ -28,13 +28,33 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+
+          <li class ="nav-item">
+            <a class ="nav-link" href="/renters">Search Renters</a>
+          </li>
          
           <li class="nav-item">
-            <%= link_to 'Profile', edit_user_registration_path, :class => "nav-link" %>
+            <%= link_to 'Edit Profile', edit_user_registration_path, :class => "nav-link" %>
           </li>
+
+          <%if current_user.renter %>
+            <li class="nav-item">
+              <%= link_to 'View Profile', current_user.renter, :class => "nav-link" %>
+            </li>
+          <%end%>
+
+          <%if current_user.tenant %>
+            <li class="nav-item">
+              <%= link_to 'View Profile', current_user.tenant, :class => "nav-link" %>
+            </li>
+          <%end%>
+          
           <li class ="nav-item">
           <%= link_to "Log Out", destroy_user_session_path, method: 'delete', :class => "nav-link" %>
           </li
+
+
+        </ul>
 
           <% else %>
           <li class ="nav-item">
@@ -49,7 +69,9 @@
               <a class="nav-link" href="/admin">Admin</a>
             </li>
           <% end %>
-                  </div>
+
+
+          </div>
       </div>
     </nav>
 

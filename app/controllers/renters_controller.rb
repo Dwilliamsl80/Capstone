@@ -1,5 +1,6 @@
 class RentersController < ApplicationController
   before_action :set_renter, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /renters
   # GET /renters.json
