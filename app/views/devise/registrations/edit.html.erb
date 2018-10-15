@@ -7,6 +7,13 @@
     <!-- Custom styles for this template -->
     <%= stylesheet_link_tag "grayscale.min.css" %>
 
+<style>
+    .green {
+    position: absolute;
+    padding-right: 25%;
+
+}
+</style>
 <body id="page-top">
 
 <header class="masthead">
@@ -26,9 +33,11 @@
   <%= devise_error_messages! %>
 
     <div class="field">
+    <div class="green">
     <%= f.label :image %><br />
     <%= f.file_field :user_picture %>
   </div>
+</div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -73,7 +82,7 @@
   </div>
 <% end %>
 </div>
-</section> 
+</section>
 </div>
 </header>
 </body>

@@ -1,5 +1,30 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <!-- Custom styles for this template -->
+    <%= stylesheet_link_tag "grayscale.min.css" %>
+
+<style>
+    .green {
+    position: absolute;
+    padding-right: 25%;
+
+}
+</style>
+<body id="page-top">
+
+<header class="masthead">
+
+
+<div align = "center">
 <p id="notice"><%= notice %></p>
-		<!-- user with no image --> 
+
+
+
+		<!-- user with no image -->
       <% if @tenant.user.user_picture.blank? %>
         <%= image_tag "blankProfile.png", :size => "200x200" %>
       <%end if %>
@@ -23,3 +48,6 @@
 
 <%= link_to 'Edit', edit_tenant_path(@tenant) %> |
 <%= link_to 'Back', tenants_path %>
+</body>
+</header>
+</div>
