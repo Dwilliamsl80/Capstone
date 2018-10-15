@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :tenanttousers
   resources :tenants
-  resources :rooms
+  resources :apartment_complexes
   resources :reviews
   resources :reviewers
   resources :rentertousers

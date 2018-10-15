@@ -51,3 +51,22 @@
 </body>
 </header>
 </div>
+
+
+<h1>Apartment Complex </h1>
+<table>
+  <tbody>
+    <th>Name</th>
+    <th>State</th>
+    <th>City</th>
+    <th>Zip Code</th>
+    <th>Address</th>
+    <% @tenant.apartment_complexes.each do |ac| %>
+      <tr>
+         <%= render "tenant_apartment_complex_show", apartment_complex: ac %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--<%= link_to 'Back', tenants_path, class: "btn btn-danger" %> -->
