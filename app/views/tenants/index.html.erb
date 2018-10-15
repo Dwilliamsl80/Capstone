@@ -1,10 +1,36 @@
-<p id="notice"><%= notice %></p>
+<html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+
+    <!-- Custom styles for this template -->
+    <%= stylesheet_link_tag "grayscale.min.css" %>
+
+<style>
+    .green {
+    position: absolute;
+    padding-right: 25%;
+
+}
+</style>
+<body id="page-top">
+
+<header class="masthead">
+
+
+<div align = "center">
+<p id="notice"><%= notice %></p>
+<br>
+<br>
+<br>
 <h1>Tenants</h1>
 
 <table>
   <thead>
     <tr>
+      
       <th>Apartmentid</th>
       <th>Firstname</th>
       <th>Lastname</th>
@@ -29,3 +55,8 @@
 <br>
 
 <%= link_to 'New Tenant', new_tenant_path %>
+
+</body>
+</header>
+</div>
+</html>
