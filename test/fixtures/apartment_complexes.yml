@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tenant: one
+  location: one
+  apartment_complex_name: MyString
+  address: MyString
+
+two:
+  tenant: two
+  location: two
+  apartment_complex_name: MyString
+  address: MyString

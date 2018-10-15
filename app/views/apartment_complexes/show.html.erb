@@ -1,0 +1,15 @@
+<h1><%= @apartment_complex.apartment_complex_name %> </h1>
+<table>
+  <tbody>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Apartment Number</th>
+    <th>Currently Leasing</th>
+
+    <% @apartment_complex.renters.each do |r| %>
+      <tr>
+         <%= render "apartment_complex_renters_show", renter: r %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

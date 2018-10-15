@@ -1,5 +1,6 @@
 class ApartmentComplex < ApplicationRecord
-	has_many :apartments
-	belongs_to :tenant
-	belongs_to :location
+  belongs_to :tenant
+  belongs_to :location
+  has_many :apartments
+  has_many :renters, :through => :apartments
 end

@@ -1,0 +1,37 @@
+<%= form_with(model: apartment_complex, local: true) do |form| %>
+  <% if apartment_complex.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(apartment_complex.errors.count, "error") %> prohibited this apartment_complex from being saved:</h2>
+
+      <ul>
+      <% apartment_complex.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tenant_id %>
+    <%= form.text_field :tenant_id, id: :apartment_complex_tenant_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.text_field :location_id, id: :apartment_complex_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apartment_complex_name %>
+    <%= form.text_field :apartment_complex_name, id: :apartment_complex_apartment_complex_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :apartment_complex_address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
