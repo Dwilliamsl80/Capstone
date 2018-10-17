@@ -1,6 +1,75 @@
+<html>
+  <head>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <!-- Custom styles for this template -->
+    <%= stylesheet_link_tag "grayscale.min.css" %>
+
+<style>
+.center {
+    height: 200px;
+    position: relative;
+    border: 3px solid black;
+}
+
+.center p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+hr{
+  color:white;
+}
+button{
+
+  color:black;
+  background-color:white;
+}
+label
+{
+  color:white;
+}
+
+h2
+{
+  color:white;
+}
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+
+</style>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body id="page-top">
+<header class="masthead">
+
+<br>
+<br>
+<br>
 <h1>Editing Renter</h1>
+<center>
 
 <%= render 'form', renter: @renter %>
 
 <%= link_to 'Show', @renter %> |
 <%= link_to 'Back', renters_path %>
+</center>
+
+</header>
+</body>
+
+</html>

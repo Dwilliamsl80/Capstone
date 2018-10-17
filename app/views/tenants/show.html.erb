@@ -8,6 +8,10 @@
     <%= stylesheet_link_tag "grayscale.min.css" %>
 
 <style>
+.pad{
+  padding-left: 5%;
+
+}
 table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -44,8 +48,18 @@ th {
 <!--
 
 -->
+
 <%if current_user.id.to_i == @tenant.user.id.to_i || current_user.try(:admin?) %>
+<body id="page-top">
+
+<header class="masthead">
 <div align = "center">
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <h1>Apartment Complex </h1>
 <table>
   <tbody>
@@ -61,7 +75,7 @@ th {
     <% end %>
   </tbody>
 </table>
-</div> 
+</div>
 
 <!-- The normal user view will go here and show the tenants public info with the ability to rate them if the current user
       is renting from the tenant -->
@@ -70,36 +84,58 @@ th {
 
   <header class="masthead">
 
+    <br>
+    <br>
+    <br>
 
-  <div align = "center">
+  <div align = "center-left">
+  <div class ="pad">
   <p id="notice"><%= notice %></p>
+  <% if @tenant.user.user_picture.blank? %>
+    <%= image_tag "blankProfile.png", :size => "200x200" %>
+  <%end if %>
 
-  		<!-- user with no image -->
-        <% if @tenant.user.user_picture.blank? %>
-          <%= image_tag "blankProfile.png", :size => "200x200" %>
-        <%end if %>
+  <!-- user with image -->
+    <% if !@tenant.user.user_picture.blank? %>
+      <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
+    <%end if %>
+    <p>
+      <strong>Firstname:</strong>
+      <%= @tenant.first_name %><br>
+      <strong>Lastname:</strong>
+      <%= @tenant.last_name %>
+    </p>
+  </div>
+  <form align = "center">
 
-        <!-- user with image -->
-          <% if !@tenant.user.user_picture.blank? %>
-            <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
-          <%end if %>
+  <p><strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRate Tenant:
+<select name="thelist" onChange="combo(this, 'theinput')">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+
+</select> </strong>
+&nbsp&nbsp&nbsp&nbsp
+<strong>
+Review Note: <textarea rows="4" cols="35"></textarea></strong></p>
+
+    <input type="submit" value="SUBMIT">
+  </form>
+</div>
 
 
 
-  <p>
-    <strong>Firstname:</strong>
-    <%= @tenant.first_name %>
-  </p>
 
-  <p>
-    <strong>Lastname:</strong>
-    <%= @tenant.last_name %>
-  </p>
 
-  <%= link_to 'Edit', edit_tenant_path(@tenant) %> |
-  <%= link_to 'Back', tenants_path %>
+
   </body>
   </header>
   </div>
 <% end %>
-
