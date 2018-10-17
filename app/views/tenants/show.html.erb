@@ -8,51 +8,44 @@
     <%= stylesheet_link_tag "grayscale.min.css" %>
 
 <style>
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
     .green {
     position: absolute;
     padding-right: 25%;
 
+
+
 }
 </style>
-<body id="page-top">
 
-<header class="masthead">
+<!-- If the current user is the tenant that is being shown or the admin then it will give them a mini dbms to find their renters and rate them -->
+<!--
 
-
+-->
+<%if current_user.id.to_i == @tenant.user.id.to_i || current_user.try(:admin?) %>
 <div align = "center">
-<p id="notice"><%= notice %></p>
-
-
-
-		<!-- user with no image -->
-      <% if @tenant.user.user_picture.blank? %>
-        <%= image_tag "blankProfile.png", :size => "200x200" %>
-      <%end if %>
-
-      <!-- user with image -->
-        <% if !@tenant.user.user_picture.blank? %>
-          <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
-        <%end if %>
-
-
-
-<p>
-  <strong>Firstname:</strong>
-  <%= @tenant.first_name %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @tenant.last_name %>
-</p>
-
-<%= link_to 'Edit', edit_tenant_path(@tenant) %> |
-<%= link_to 'Back', tenants_path %>
-</body>
-</header>
-</div>
-
-
 <h1>Apartment Complex </h1>
 <table>
   <tbody>
@@ -68,5 +61,45 @@
     <% end %>
   </tbody>
 </table>
+</div> 
 
-<!--<%= link_to 'Back', tenants_path, class: "btn btn-danger" %> -->
+<!-- The normal user view will go here and show the tenants public info with the ability to rate them if the current user
+      is renting from the tenant -->
+<%else%>
+  <body id="page-top">
+
+  <header class="masthead">
+
+
+  <div align = "center">
+  <p id="notice"><%= notice %></p>
+
+  		<!-- user with no image -->
+        <% if @tenant.user.user_picture.blank? %>
+          <%= image_tag "blankProfile.png", :size => "200x200" %>
+        <%end if %>
+
+        <!-- user with image -->
+          <% if !@tenant.user.user_picture.blank? %>
+            <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
+          <%end if %>
+
+
+
+  <p>
+    <strong>Firstname:</strong>
+    <%= @tenant.first_name %>
+  </p>
+
+  <p>
+    <strong>Lastname:</strong>
+    <%= @tenant.last_name %>
+  </p>
+
+  <%= link_to 'Edit', edit_tenant_path(@tenant) %> |
+  <%= link_to 'Back', tenants_path %>
+  </body>
+  </header>
+  </div>
+<% end %>
+
