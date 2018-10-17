@@ -14,6 +14,23 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+    <%= f.fields_for :renters do |renter| %>
+        <div class="field">
+        <%= renter.label :apartmentID %>
+        <%= renter.number_field :apartmentID, id: :renter_apartmentID %>
+      </div>
+
+      <div class="field">
+        <%= renter.label :firstName %>
+        <%= renter.text_field :firstName, id: :renter_firstName %>
+      </div>
+
+      <div class="field">
+        <%= renter.label :lastName %>
+        <%= renter.text_field :lastName, id: :renter_lastName %>
+      </div>
+    <% end %>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

@@ -2,6 +2,8 @@ class TenantsController < ApplicationController
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+
+
   # GET /tenants
   # GET /tenants.json
   def index
