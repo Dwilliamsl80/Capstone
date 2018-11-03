@@ -41,6 +41,9 @@
             <li class="nav-item">
               <%= link_to 'View Profile', current_user.renter, :class => "nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'My Tenant', current_user.renter.apartment.apartment_complex.tenant, :class => "nav-link" %>
+            </li>
           <%end%>
 
           <%if current_user.tenant %>

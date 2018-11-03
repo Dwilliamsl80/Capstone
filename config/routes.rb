@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
  
   
+  post '/rate' => 'rater#create', :as => 'rate'
   root 'pages#index'
   
 
   resources :tenanttousers
   resources :tenants
   resources :apartment_complexes
-  resources :reviews
-  resources :reviewers
   resources :rentertousers
   resources :renters
   resources :locations

@@ -131,7 +131,25 @@ Review Note: <textarea rows="4" cols="35"></textarea></strong></p>
 </div>
 
 
+ <!-- The users that this user has been rated by will show here -->
+                      <div class="form-group">
+                        <label for="Rating"><h4>Overall Rating: <%= Rating.avg_rating(@tenant.user) %> </h4></label><br/>
+                          <% Rating.rated_by_users(@tenant.user).each do |r| %>
+                          <div class="col-xs-6">
+                                <% user = User.find(r.user1_id) %>
+                                <%if(!user.renter.blank?) %>
+                                <label for="Rating"><h4>Rated by: <%= user.renter.first_name + " " + user.renter.last_name  %> </h4></label><br/>
+                              <%end%>
+                              <%if(!r.rating.blank?) %>
+                                <label for="Rating"><h4>Rating: <%= r.rating %> </h4></label><br/>
+                              <%end%>
+                              <%if(!r.description.blank?) %>
+                                <label for="Rating"><h4>Description: <%= r.description %> </h4></label><br/>
+                              <%end%>
+                          </div>
 
+                         <% end %>
+                      </div>
 
 
 
