@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181009234255) do
+ActiveRecord::Schema.define(version: 20181031214137) do
 
   create_table "agencies", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "agency_name", limit: 100
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20181009234255) do
     t.string "city", limit: 100
   end
 
+  create_table "ratings", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user1_id", null: false
+    t.integer "user2_id", null: false
+    t.integer "rating"
+    t.text "description"
+    t.timestamps
+  end
+
   create_table "renters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "apartment_id", null: false
     t.integer "user_id", null: false
@@ -59,21 +67,6 @@ ActiveRecord::Schema.define(version: 20181009234255) do
     t.boolean "leasing"
     t.index ["apartment_id"], name: "fk_Renter_to_Apartment"
     t.index ["user_id"], name: "fk_Renter_to_user"
-  end
-
-  create_table "reviewers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "fk_Reviewers_to_User"
-  end
-
-  create_table "reviews", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "reviewer_id", null: false
-    t.integer "user_id", null: false
-    t.decimal "rating", precision: 2, scale: 1
-    t.string "description", limit: 500
-    t.datetime "review_date"
-    t.index ["reviewer_id"], name: "fk_Reviews_to_Reviewer"
-    t.index ["user_id"], name: "fk_Reviews_to_User"
   end
 
   create_table "tenants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -112,8 +105,7 @@ ActiveRecord::Schema.define(version: 20181009234255) do
   add_foreign_key "apartments", "apartment_complexes", name: "fk_Apartments_to_Apartment_Complex"
   add_foreign_key "renters", "apartments", name: "fk_Renter_to_Apartment"
   add_foreign_key "renters", "users", name: "fk_Renter_to_user"
-  add_foreign_key "reviewers", "users", name: "fk_Reviewers_to_User"
-  add_foreign_key "reviews", "reviewers", name: "fk_Reviews_to_Reviewer"
-  add_foreign_key "reviews", "users", name: "fk_Reviews_to_User"
   add_foreign_key "tenants", "users", name: "fk_Tenant_to_User"
+  add_foreign_key "ratings", "users", name: "fk_Rating_User_to_User", column: :user1_id
+  add_foreign_key "ratings", "users", name: "fk_Rated_User_to_User", column: :user2_id
 end

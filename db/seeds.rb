@@ -89,3 +89,12 @@ Renter.create!([
   {apartment_id: 15, user_id: 19, first_name: "Sabrina", last_name: "Hoffman", contract_start: "2018-07-02 17:14:00", contract_end: "2018-10-08 17:15:00", leasing: false}
 ])
 
+Rating.create!([
+{user1_id: 1, user2_id: 4, rating: 10, description: "Great"},
+{user1_id: 1, user2_id: 5, rating: 7, description: "Decent"},
+{user1_id: 2, user2_id: 6, rating: 5, description: "Mediocre at best."},
+{user1_id: 2, user2_id: 7, rating: 3, description: "Noisy and late on payments."},
+{user1_id: 4, user2_id: 1, rating: 9, description: "Great"},
+{user1_id: 5, user2_id: 1, rating: 10, description: "Great"},
+])
+

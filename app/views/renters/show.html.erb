@@ -66,12 +66,6 @@ h2
           <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
         <%end if %>
       </div></hr><br>
-      <%= link_to 'Edit', edit_renter_path(@renter) %> |
-      <%= link_to 'Back', renters_path %>
-
-
-
-
 
           <div class="panel panel-default">
                         <div class="panel-body">
@@ -99,21 +93,43 @@ h2
                             <label for="Address"><h4>Address: <%= @renter.apartment.apartment_complex.address %></h4></label>
                                                         </div>
                       </div>
-
+                      <!-- The users that this user has been rated by will show here -->
                       <div class="form-group">
-
+                        <label for="Rating"><h4>Overall Rating: <%= Rating.avg_rating(@renter.user) %> </h4></label><br/>
+                          <% Rating.rated_by_users(@renter.user).each do |rating| %>
                           <div class="col-xs-6">
-                              <label for="Rating"><h4>Current Rating: </h4></label>
-                                                       </div>
-                      </div>
+                                <% user = User.find(rating.user1_id) %>
+                                <%if(!user.tenant.blank?) %>
+                                <label for="Rating"><h4>Rated by: <%= user.tenant.first_name + " " + user.tenant.last_name  %> </h4></label><br/>
+                              <%end%>
+                              <%if(!rating.rating.blank?) %>
+                                <label for="Rating"><h4>Rating: <%= rating.rating %> </h4></label><br/>
+                              <%end%>
+                              <%if(!rating.description.blank?) %>
+                                <label for="Rating"><h4>Description: <%= rating.description %> </h4></label><br/>
+                              <%end%>
+                          </div>
 
+                         <% end %>
+                      </div>
+                      <!-- The users that have been rated by this user will show here -->
                       <div class="form-group">
+                        <% Rating.rated_users(@renter.user).each do |rating| %>
                           <div class="col-xs-6">
-                             <label for="mobile"><h4>User Reviews: </h4></label>
-                                                        </div>
+                                <% user = User.find(rating.user2_id) %>
+                                <%if(!user.tenant.blank?) %>
+                                <label for="Rating"><h4>Rated: <%= user.tenant.first_name + " " + user.tenant.last_name  %> </h4></label><br/>
+                              <%end%>
+                              <%if(!rating.rating.blank?) %>
+                                <label for="Rating"><h4>Rating: <%= rating.rating %> </h4></label><br/>
+                              <%end%>
+                              <%if(!rating.description.blank?) %>
+                                <label for="Rating"><h4>Description: <%= rating.description %> </h4></label><br/>
+                              <%end%>
+                          </div>
+
+                         <% end %>
                       </div>
-
-
               </div>
 
               </div><!--/tab-pane-->
