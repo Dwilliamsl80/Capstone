@@ -109,8 +109,10 @@ th {
 
   <!-- user with image -->
     <% if !@tenant.user.user_picture.blank? %>
-      <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
+      <%= image_tag(@tenant.user.user_picture.url(:original), :size => "200x200") %>
     <%end if %>
+    </div>
+    <div>
     <p>
       <h4><strong>Name:</strong>
       <%= @tenant.first_name %>&nbsp<%= @tenant.last_name %></h4>
