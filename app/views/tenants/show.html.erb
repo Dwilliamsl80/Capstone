@@ -103,14 +103,16 @@ th {
   <div align = "center-left">
   <div class ="pad">
   <p id="notice"><%= notice %></p>
+    <!-- user with image -->
+    <% if !@tenant.user.user_picture.blank? %>
+      <%= image_tag(@tenant.user.user_picture.url(:original), :size => "200x200") %>
+    <%end if %>
+    
   <% if @tenant.user.user_picture.blank? %>
     <%= image_tag "blankProfile.png", :size => "200x200" %>
   <%end if %>
 
-  <!-- user with image -->
-    <% if !@tenant.user.user_picture.blank? %>
-      <%= image_tag(@tenant.user.user_picture.url(:original), :size => "200x200") %>
-    <%end if %>
+
     </div>
     <div>
     <p>
