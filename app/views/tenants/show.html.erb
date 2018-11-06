@@ -12,6 +12,11 @@
     <%= stylesheet_link_tag "grayscale.css" %>
 
 <style>
+h4
+{
+  color:white;
+}
+
 .pad{
   padding-left: 5%;
 
@@ -107,10 +112,8 @@ th {
       <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
     <%end if %>
     <p>
-      <strong>Firstname:</strong>
-      <%= @tenant.first_name %><br>
-      <strong>Lastname:</strong>
-      <%= @tenant.last_name %>
+      <h4><strong>Name:</strong>
+      <%= @tenant.first_name %>&nbsp<%= @tenant.last_name %></h4>
     </p>
   </div>
   <form align = "center">
