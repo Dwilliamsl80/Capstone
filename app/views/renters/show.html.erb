@@ -10,7 +10,7 @@
 
 
     <!-- Custom styles for this template -->
-    <%= stylesheet_link_tag "grayscale.min.css" %>
+    <%= stylesheet_link_tag "grayscale.css" %>
 
 <style>
 hr{
@@ -84,7 +84,8 @@ th {
   		<div class="col-sm-10"><h1><%= @renter.first_name %> <%= @renter.last_name %></h1></div>
     	    </div>
     <div class="row">
-  		<div class="col-sm-3"><!--left col-->
+  		
+<div class="col-sm-3"><!--left col-->
       <!-- user with no image -->
       <% if @renter.user.user_picture.blank? %>
         <%= image_tag "blankProfile.png", :size => "200x200" %>
@@ -95,6 +96,8 @@ th {
           <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
         <%end if %>
       </div></hr><br>
+
+
 
           <div class="panel panel-default">
                         <div class="panel-body">
@@ -167,7 +170,8 @@ th {
         </div><!--/col-9-->
     </div><!--/row-->
 </section>
-                 </header>
+                 
 
   </body>
+</header>
 </html>

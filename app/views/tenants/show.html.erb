@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -5,7 +9,7 @@
 
 
     <!-- Custom styles for this template -->
-    <%= stylesheet_link_tag "grayscale.min.css" %>
+    <%= stylesheet_link_tag "grayscale.css" %>
 
 <style>
 .pad{
@@ -43,7 +47,7 @@ th {
 
 }
 </style>
-
+</head>
 <!-- If the current user is the tenant that is being shown or the admin then it will give them a mini dbms to find their renters and rate them -->
 <!--
 
@@ -53,6 +57,7 @@ th {
 <body id="page-top">
 
 <header class="masthead">
+
 <div align = "center">
 <br>
 <br>
@@ -76,6 +81,8 @@ th {
   </tbody>
 </table>
 </div>
+</body>
+</header>
 
 <!-- The normal user view will go here and show the tenants public info with the ability to rate them if the current user
       is renting from the tenant -->
@@ -153,7 +160,11 @@ Review Note: <textarea rows="4" cols="35"></textarea></strong></p>
 
 
 
-  </body>
-  </header>
+  
+  
   </div>
+</body>
+</header>
 <% end %>
+
+</html>
