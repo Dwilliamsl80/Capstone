@@ -80,42 +80,34 @@ th {
 
 
 <div class="container bootstrap snippet">
-    <div class="row">
-  		<div class="col-sm-10"><h1><%= @renter.first_name %> <%= @renter.last_name %></h1></div>
-    	    </div>
-    <div class="row">
-  		
-<div class="col-sm-3"><!--left col-->
-        <!-- user with image -->
-        <% if !@renter.user.user_picture.blank? %>
-          <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
-        <%end if %>
-      <!-- user with no image -->
-      <% if @renter.user.user_picture.blank? %>
-        <%= image_tag "blankProfile.png", :size => "200x200" %>
-      <%end if %>
-
-
-</div><br>
 
 
 
-        </div><!--/col-3-->
+
+                <br>
+
+
+
+        <!--/col-3-->
     	<div class="col-sm-9">
 
           <div class="tab-content">
             <div class="tab-pane active" id="home">
-                <hr>
+
+                <% if !@renter.user.user_picture.blank? %>
+                  <%= image_tag(@renter.user.user_picture.url(:original), :size => "200x200") %>
+                <% else @renter.user.user_picture.blank? %>
+                    <%= image_tag ("blankProfile.png"), :size => "200x200" %>
+                <%end%>
+
+
+
+
+
 
                       <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="full_name"><h4>Name: <%= @renter.first_name %> <%= @renter.last_name %></h4></label>
-
-                          </div>
-                      </div>
-                      <div class="form-group">
-
+                        <br>
+                        <h4 style = "color:white;">Name: <%= @renter.first_name %> <%= @renter.last_name %></h4></div>
                           <div class="col-xs-6">
                             <label for="Address"><h4>Address: <%= @renter.apartment.apartment_complex.address %></h4></label>
                                                         </div>
@@ -162,10 +154,9 @@ th {
               </div><!--/tab-pane-->
           </div><!--/tab-content-->
 
-        </div><!--/col-9-->
-    </div><!--/row-->
+    <!--/row-->
 </section>
-                 
+
 
   </body>
 </header>
