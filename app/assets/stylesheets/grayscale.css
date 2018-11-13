@@ -4,6 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
  */
 
+
 #mainNav {
   min-height: 56px;
   background-color: #fff;
@@ -302,4 +303,62 @@ a:focus, a:hover {
 
 footer {
   padding: 5rem 0;
+}
+.rating
+{
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  display: flex;
+
+}
+.rating input
+{
+  /*display: none;*/
+}
+.rating label
+{
+  display: block;
+  cursor: pointer;
+  width: 50px;
+  background: transparent;
+}
+.rating label:before
+{
+
+  position: relative;
+  display: block;
+  color: #101010;
+}
+.rating label:after
+{
+
+  position: absolute;
+  display: block;
+  font-size: 50px;
+  color: #1f9cff;
+  top: 0;
+  opacity: 0;
+  transition: .5s;
+
+}
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after
+{
+  opacity:1;
+}
+.note
+{
+  position: absolute;
+  top: 60%;
+  left: 35%;
+  display: flex;
+}
+.submit
+{
+  position: absolute;
+  top: 70%;
+  left: 35%;
+  display: flex;
 }

@@ -15,7 +15,7 @@ class RatingsController < ApplicationController
 
   # GET /ratings/new
   def new
-    @rating = rating.new
+    @rating = Rating.new
   end
 
   # GET /ratings/1/edit
@@ -25,7 +25,7 @@ class RatingsController < ApplicationController
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = rating.new(rating_params)
+    @rating = Rating.new(rating_params)
 
     respond_to do |format|
       if @rating.save
@@ -36,7 +36,19 @@ class RatingsController < ApplicationController
         format.json { render json: @rating.errors, status: :unprocessable_entity }
       end
     end
+redirect_to "/tenants/"+@tenant.user.id
   end
+
+def add_review
+@requser1= params[:user1_id]
+@requser2= params[:user2_id]
+@reqdes= params[:description]
+@reqrating= params[:rating]
+#abort @requser2.inspect
+@rr= Rating.find_or_create_by(:user1_id => @requser1, :user2_id => @requser2, :description => @reqdes, :rating => @reqrating)
+@rr.save
+redirect_to "/tenants/"+@requser2
+end
 
   # PATCH/PUT /ratings/1
   # PATCH/PUT /ratings/1.json
