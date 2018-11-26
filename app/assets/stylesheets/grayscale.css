@@ -4,6 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
  */
 
+
 #mainNav {
   min-height: 56px;
   background-color: #fff;
@@ -92,7 +93,7 @@
     height: 100%;
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    overflow-x: hidden;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.1)), color-stop(75%, rgba(22, 22, 22, 0.5)), to(#161616)),
   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../app/assets/images/bg-masthead.jpg");
   background-position: center;
@@ -302,4 +303,62 @@ a:focus, a:hover {
 
 footer {
   padding: 5rem 0;
+}
+.rating
+{
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  display: flex;
+
+}
+.rating input
+{
+  /*display: none;*/
+}
+.rating label
+{
+  display: block;
+  cursor: pointer;
+  width: 50px;
+  background: transparent;
+}
+.rating label:before
+{
+
+  position: relative;
+  display: block;
+  color: #101010;
+}
+.rating label:after
+{
+
+  position: absolute;
+  display: block;
+  font-size: 50px;
+  color: #1f9cff;
+  top: 0;
+  opacity: 0;
+  transition: .5s;
+
+}
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after
+{
+  opacity:1;
+}
+.note
+{
+  position: absolute;
+  top: 60%;
+  left: 35%;
+  display: flex;
+}
+.submit
+{
+  position: absolute;
+  top: 70%;
+  left: 35%;
+  display: flex;
 }
