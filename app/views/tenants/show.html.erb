@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="//use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
+
     <!-- Custom styles for this template -->
     <%= stylesheet_link_tag "grayscale.css" %>
-
+</head>
 <style>
 h4
 {
@@ -51,8 +52,10 @@ th {
 
 
 }
+
+
 </style>
-</head>
+
 <!-- If the current user is the tenant that is being shown or the admin then it will give them a mini dbms to find their renters and rate them -->
 <!--
 
@@ -87,12 +90,12 @@ th {
 </table>
 </div>
 </body>
-</header>
+
 
 <!-- The normal user view will go here and show the tenants public info with the ability to rate them if the current user
       is renting from the tenant -->
 <%else%>
-  <body id="page-top">
+  <body>
 
   <header class="masthead">
 
@@ -106,43 +109,50 @@ th {
     <!-- user with image -->
     <% if !@tenant.user.user_picture.blank? %>
       <%= image_tag(@tenant.user.user_picture.url(:original), :size => "200x200") %>
-    <%end if %>
-    
-  <% if @tenant.user.user_picture.blank? %>
+
+
+  <% else @tenant.user.user_picture.blank? %>
     <%= image_tag "blankProfile.png", :size => "200x200" %>
-  <%end if %>
+  <%end%>
 
 
     </div>
+
     <div>
-    <p>
+
       <h4><strong>Name:</strong>
       <%= @tenant.first_name %>&nbsp<%= @tenant.last_name %></h4>
-    </p>
+
   </div>
-  <form align = "center">
 
-  <p><strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspRate Tenant:
-<select name="thelist" onChange="combo(this, 'theinput')">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-<option>6</option>
-<option>7</option>
-<option>8</option>
-<option>9</option>
-<option>10</option>
+  </div>
+<%= form_tag(add_review_path, method: "get") do %>
+<input type="hidden" id="user1_id" name="user1_id" value="<%= current_user.id%>">
+<input type="hidden" id="user2_id" name="user2_id" value="<%= @tenant.user.id%>">
 
-</select> </strong>
-&nbsp&nbsp&nbsp&nbsp
-<strong>
-Review Note: <textarea rows="4" cols="35"></textarea></strong></p>
+<div class ="rating">
+  <h4>Rate Tenant: &nbsp</h4>
+    <input type="radio" name="rating" id="star1" value=1><label for="star1">1 &#9733;
+      </label>
+      <input type="radio" name="rating" id="star2" value=2><label for="star2">2 &#9733;
+        </label>
+        <input type="radio" name="rating" id="star3" value=3><label for="star3">3 &#9733;
+          </label>
+          <input type="radio" name="rating" id="star4" value=4><label for="star4">4 &#9733;
+            </label>
+            <input type="radio" name="rating" id="star5" value=5><label for="star5">5 &#9733;
+              </label>
 
-    <input type="submit" value="SUBMIT">
-  </form>
-</div>
+  </div>
+  <div class ="note">
+  <h4>Write Note: &nbsp</h4>
+  <textarea name="description" rows="7" cols="50">
+  </textarea>
+  </div>
+  <div class = "submit">
+  <%= submit_tag("Submit") %>
+  </div>
+<%end%>
 
 
  <!-- The users that this user has been rated by will show here -->
@@ -167,11 +177,10 @@ Review Note: <textarea rows="4" cols="35"></textarea></strong></p>
 
 
 
-  
-  
-  </div>
+
+
 </body>
-</header>
+
 <% end %>
 
 </html>
