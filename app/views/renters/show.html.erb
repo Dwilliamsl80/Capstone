@@ -150,6 +150,77 @@ th {
                          <% end %>
                       </div>
               </div>
+              <!--If the user is this renters tenant it will show a rating form for the renter-->
+<%if current_user.id.to_i == @renter.apartment.apartment_complex.tenant.user.id.to_i  %>             
+  <%if (Rating.user_rated_by_user(current_user, @renter.user)).present?%>
+  <% @rating = Rating.user_rated_by_user(current_user, @renter.user)%>
+    <%= form_tag(edit_renter_rating_path, method: "get") do %>
+  <input type="hidden" id="user1_id" name="user1_id" value="<%= current_user.id%>">
+  <input type="hidden" id="user2_id" name="user2_id" value="<%= @renter.user.id%>">
+  <input type="hidden" id="id" name="id" value="<%= @rating[0].id%>">
+
+  <div class ="rating">
+    <h4>Edit Rating: &nbsp</h4>
+    <%if (@rating[0].rating.to_i == 1.to_i)%>
+      <input type="radio" name="rating" id="star1" value=1 checked="checked"><label for="star1">1 &#9733;</label>
+    <%else%>
+      <input type="radio" name="rating" id="star1" value=1><label for="star1">1 &#9733;</label>
+    <%end%>
+    <%if (@rating[0].rating.to_i == 2.to_i)%>
+      <input type="radio" name="rating" id="star2" value=2 checked="checked"><label for="star2">2 &#9733;</label>
+    <%else%>
+      <input type="radio" name="rating" id="star2" value=2><label for="star2">2 &#9733;</label>
+    <%end%>
+    <%if (@rating[0].rating.to_i == 3.to_i)%>
+      <input type="radio" name="rating" id="star3" value=3 checked="checked"><label for="star3">3 &#9733;</label>
+    <%else%>
+      <input type="radio" name="rating" id="star3" value=3><label for="star3">3 &#9733;</label>
+    <%end%>
+    <%if (@rating[0].rating.to_i == 4.to_i)%>
+      <input type="radio" name="rating" id="star4" value=4 checked="checked"><label for="star4">4 &#9733;</label>
+    <%else%>
+      <input type="radio" name="rating" id="star4" value=4><label for="star4">4 &#9733;</label>
+    <%end%>
+    <%if (@rating[0].rating.to_i == 5.to_i)%>
+      <input type="radio" name="rating" id="star5" value=5 checked="checked"><label for="star5">5 &#9733;</label>
+    <%else%>
+      <input type="radio" name="rating" id="star5" value=5><label for="star5">5 &#9733;</label>
+    <%end%>
+
+
+    </div>
+    <div class ="note">
+    <h4>Write Note: &nbsp</h4>
+    <textarea name="description" rows="7" cols="50"><%=@rating[0].description%></textarea>
+    </div>
+    <div class = "submit">
+    <%= submit_tag("Submit") %>
+    </div>
+    <%end%>
+  <% else %>
+    </div>
+  <%= form_tag(add_renter_rating_path, method: "get") do %>
+  <input type="hidden" id="user1_id" name="user1_id" value="<%= current_user.id%>">
+  <input type="hidden" id="user2_id" name="user2_id" value="<%= @renter.user.id%>">
+
+  <div class ="rating">
+    <h4>Rate Tenant: &nbsp</h4>
+    <input type="radio" name="rating" id="star1" value=1><label for="star1">1 &#9733;</label>
+    <input type="radio" name="rating" id="star2" value=2><label for="star2">2 &#9733;</label>
+    <input type="radio" name="rating" id="star3" value=3><label for="star3">3 &#9733;</label>
+    <input type="radio" name="rating" id="star4" value=4><label for="star4">4 &#9733;</label>
+    <input type="radio" name="rating" id="star5" value=5><label for="star5">5 &#9733;</label>
+  </div>
+    <div class ="note">
+    <h4>Write Note: &nbsp</h4>
+    <textarea name="description" rows="7" cols="50"></textarea>
+    </div>
+    <div class = "submit">
+    <%= submit_tag("Submit") %>
+    </div>
+    <%end%>
+  <%end%>
+<%end%>
 
               </div><!--/tab-pane-->
           </div><!--/tab-content-->

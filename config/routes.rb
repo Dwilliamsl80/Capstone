@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   resources :agencies
   resources :ratings
 
-  get '/add_review', to: "ratings#add_review"
-
+  get '/add_tenant_rating', to: "ratings#add_tenant_rating"
+  get '/edit_tenant_rating', to: "ratings#edit_tenant_rating"
+  get '/add_renter_rating', to: "ratings#add_renter_rating"
+  get '/edit_renter_rating', to: "ratings#edit_renter_rating"
 #devise_for :users, controllers: { registrations: "users/registrations" }
 
 devise_for :users do
