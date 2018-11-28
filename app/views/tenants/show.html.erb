@@ -119,10 +119,11 @@ th {
     </div>
 
     <div>
-
+  <div class ="pad">
+    <br>
       <h4><strong>Name:</strong>
       <%= @tenant.first_name %>&nbsp<%= @tenant.last_name %></h4>
-
+ </div>
   </div>
 
 <%if (Rating.user_rated_by_user(current_user, @tenant.user)).present?%>
@@ -203,8 +204,18 @@ th {
 
  <!-- The users that this user has been rated by will show here -->
                       <div class="form-group">
+
+                          <div class ="pad">
+
+
                         <label for="Rating"><h4>Overall Rating: <%= Rating.avg_rating(@tenant.user) %> </h4></label><br/>
+                        <br>
+                        <br>
+                        <br>
                           <% Rating.rated_by_users(@tenant.user).each do |r| %>
+                          <br>
+                          <div class ="one">
+
                           <div class="col-xs-6">
                                 <% user = User.find(r.user1_id) %>
                                 <%if(!user.renter.blank?) %>
@@ -214,12 +225,19 @@ th {
                                 <label for="Rating"><h4>Rating: <%= r.rating %> </h4></label><br/>
                               <%end%>
                               <%if(!r.description.blank?) %>
+
+                            <div style = "word-wrap: break-word;"
                                 <label for="Rating"><h4>Description: <%= r.description %> </h4></label><br/>
+                                </div>
+
                               <%end%>
                           </div>
 
+                            </div>
                          <% end %>
+
                       </div>
+</div>
 
 
 
