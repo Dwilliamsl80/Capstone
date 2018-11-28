@@ -39,7 +39,7 @@ class RatingsController < ApplicationController
 redirect_to "/tenants/"+@tenant.user.id
   end
 
-def add_review
+def add_tenant_rating
 @requser1= params[:user1_id]
 @requser2= params[:user2_id]
 @reqdes= params[:description]
@@ -47,7 +47,40 @@ def add_review
 #abort @requser2.inspect
 @rr= Rating.find_or_create_by(:user1_id => @requser1, :user2_id => @requser2, :description => @reqdes, :rating => @reqrating)
 @rr.save
-redirect_to "/tenants/"+@requser2
+@tenant_user = User.find(params[:user2_id])
+redirect_to "/tenants/"+@tenant_user.tenant.id.to_s
+
+end
+
+def edit_tenant_rating
+    @id = params[:id]
+    @rating_description = params[:description]
+    @rating_rating= params[:rating]
+    Rating.update(@id, description:  @rating_description, rating: @rating_rating)
+    @tenant_user = User.find(params[:user2_id])
+    redirect_to "/tenants/"+@tenant_user.tenant.id.to_s
+
+end
+
+def add_renter_rating
+@requser1= params[:user1_id]
+@requser2= params[:user2_id]
+@reqdes= params[:description]
+@reqrating= params[:rating]
+#abort @requser2.inspect
+@rr= Rating.find_or_create_by(:user1_id => @requser1, :user2_id => @requser2, :description => @reqdes, :rating => @reqrating)
+@rr.save
+@renter_user = User.find(params[:user2_id])
+redirect_to "/renters/"+@renter_user.renter.id.to_s
+end
+
+def edit_renter_rating
+    @id = params[:id]
+    @rating_description = params[:description]
+    @rating_rating= params[:rating]
+    Rating.update(@id, description:  @rating_description, rating: @rating_rating)
+    @renter_user = User.find(params[:user2_id])
+    redirect_to "/renters/"+@renter_user.renter.id.to_s
 end
 
   # PATCH/PUT /ratings/1
@@ -77,7 +110,7 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rating
-      @rating = rating.find(params[:id])
+      @rating = Rating.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

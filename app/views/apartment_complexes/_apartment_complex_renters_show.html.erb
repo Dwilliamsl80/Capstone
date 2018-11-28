@@ -1,4 +1,3 @@
-<td><%= renter.first_name %></td>
-<td><%= renter.last_name %></td>
+<td><%= link_to "#{renter.first_name} #{renter.last_name}", renter_path(renter.id) %></td>
 <td><%= renter.apartment.apartment_number %></td>
 <td><%= renter.leasing %></td>
