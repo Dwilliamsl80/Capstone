@@ -115,7 +115,11 @@ th {
                       <!-- The users that this user has been rated by will show here -->
                       <div class="form-group">
                         <label for="Rating"><h4>Overall Rating: <%= Rating.avg_rating(@renter.user) %> </h4></label><br/>
+                        <br>
+                        <br>
+                        <br>
                           <% Rating.rated_by_users(@renter.user).each do |rating| %>
+                          <div class ="one">
                           <div class="col-xs-6">
                                 <% user = User.find(rating.user1_id) %>
                                 <%if(!user.tenant.blank?) %>
@@ -129,11 +133,16 @@ th {
                               <%end%>
                           </div>
 
+
                          <% end %>
+                         </div>
                       </div>
                       <!-- The users that have been rated by this user will show here -->
                       <div class="form-group">
+                        <br>
+
                         <% Rating.rated_users(@renter.user).each do |rating| %>
+                        <div class ="one">
                           <div class="col-xs-6">
                                 <% user = User.find(rating.user2_id) %>
                                 <%if(!user.tenant.blank?) %>
@@ -143,15 +152,19 @@ th {
                                 <label for="Rating"><h4>Rating: <%= rating.rating %> </h4></label><br/>
                               <%end%>
                               <%if(!rating.description.blank?) %>
+                              <div style = "word-wrap: break-word;"
                                 <label for="Rating"><h4>Description: <%= rating.description %> </h4></label><br/>
+                                </div>
+                                </div>
                               <%end%>
                           </div>
-
+                          <br>
                          <% end %>
+
                       </div>
               </div>
               <!--If the user is this renters tenant it will show a rating form for the renter-->
-<%if current_user.id.to_i == @renter.apartment.apartment_complex.tenant.user.id.to_i  %>             
+<%if current_user.id.to_i == @renter.apartment.apartment_complex.tenant.user.id.to_i  %>
   <%if (Rating.user_rated_by_user(current_user, @renter.user)).present?%>
   <% @rating = Rating.user_rated_by_user(current_user, @renter.user)%>
     <%= form_tag(edit_renter_rating_path, method: "get") do %>
@@ -159,7 +172,7 @@ th {
   <input type="hidden" id="user2_id" name="user2_id" value="<%= @renter.user.id%>">
   <input type="hidden" id="id" name="id" value="<%= @rating[0].id%>">
 
-  <div class ="rating">
+  <div class ="rating1">
     <h4>Edit Rating: &nbsp</h4>
     <%if (@rating[0].rating.to_i == 1.to_i)%>
       <input type="radio" name="rating" id="star1" value=1 checked="checked"><label for="star1">1 &#9733;</label>
@@ -189,11 +202,11 @@ th {
 
 
     </div>
-    <div class ="note">
+    <div class ="note1">
     <h4>Write Note: &nbsp</h4>
     <textarea name="description" rows="7" cols="50"><%=@rating[0].description%></textarea>
     </div>
-    <div class = "submit">
+    <div class = "submit1">
     <%= submit_tag("Submit") %>
     </div>
     <%end%>
@@ -203,7 +216,7 @@ th {
   <input type="hidden" id="user1_id" name="user1_id" value="<%= current_user.id%>">
   <input type="hidden" id="user2_id" name="user2_id" value="<%= @renter.user.id%>">
 
-  <div class ="rating">
+  <div class ="rating1">
     <h4>Rate Tenant: &nbsp</h4>
     <input type="radio" name="rating" id="star1" value=1><label for="star1">1 &#9733;</label>
     <input type="radio" name="rating" id="star2" value=2><label for="star2">2 &#9733;</label>
@@ -211,11 +224,11 @@ th {
     <input type="radio" name="rating" id="star4" value=4><label for="star4">4 &#9733;</label>
     <input type="radio" name="rating" id="star5" value=5><label for="star5">5 &#9733;</label>
   </div>
-    <div class ="note">
+    <div class ="note1">
     <h4>Write Note: &nbsp</h4>
     <textarea name="description" rows="7" cols="50"></textarea>
     </div>
-    <div class = "submit">
+    <div class = "submit1">
     <%= submit_tag("Submit") %>
     </div>
     <%end%>
@@ -223,12 +236,12 @@ th {
 <%end%>
 
               </div><!--/tab-pane-->
-          </div><!--/tab-content-->
+          <!--/tab-content-->
 
     <!--/row-->
-</section>
+
 
 
   </body>
-</header>
+
 </html>
