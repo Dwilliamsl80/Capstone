@@ -307,24 +307,30 @@ footer {
 }
 .rating
 {
-  position: absolute;
+  position: static;
   top: 15%;
   left: 30%;
   display: flex;
 
-}
 
+}
+.space
+{
+  left: 70%;
+
+}
 .note
 {
-  position: absolute;
+  position: static;
   top: 25%;
   left: 30%;
   display: flex;
+
 }
 
 .rating1
 {
-  position: absolute;
+  position: static;
   top: 5%;
   left: 45%;
   display: flex;
@@ -333,24 +339,26 @@ footer {
 
 .note1
 {
-  position: absolute;
+  position: static;
   top: 10%;
   left: 45%;
   display: flex;
 }
 .submit1
 {
-  position: absolute;
+position: static;
   top: 15%;
   left: 45%;
   display: flex;
+
 }
 .submit
 {
-  position: absolute;
+  position: static;
   top: 35%;
   left: 30%;
   display: flex;
+
 }
 .one {
     border-style: solid;
