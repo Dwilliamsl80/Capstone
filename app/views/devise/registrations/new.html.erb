@@ -13,52 +13,45 @@
 
       <h1>Sign up</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-    <%= f.fields_for :renters do |renter| %>
-        <div class="field">
-        <%= renter.label :apartmentID %>
-        <%= renter.number_field :apartmentID, id: :renter_apartmentID %>
-      </div>
-
-      <div class="field">
-        <%= renter.label :firstName %>
-        <%= renter.text_field :firstName, id: :renter_firstName %>
-      </div>
-
-      <div class="field">
-        <%= renter.label :lastName %>
-        <%= renter.text_field :lastName, id: :renter_lastName %>
-      </div>
+<% resource.build_renter if resource.renter.nil? %>
+<%= form_for(resource, :as => resource_name,
+                       :url => registration_path(resource_name)) do |f| %>
+  <ul>
+    <%= devise_error_messages! %>
+    <%= f.fields_for :renter do |renter_fields| %>
+      <li class="first_name">
+        <%= renter_fields.label :first_name %>
+        <%= renter_fields.text_field :first_name %>
+      </li>
+      <li class ="last_name">
+        <%= renter_fields.label :last_name %>
+        <%= renter_fields.text_field :last_name %>
+      </li>
+      <li class ="apartment_id">
+        <%= renter_fields.label :apartment_id %>
+        <%= renter_fields.text_field :apartment_id %>
+      </li>
     <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-<br/>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <li class="email">
+      <%= f.label :email %>
+      <%= f.email_field :email, :autofocus => true %>
+    </li>
+    <li class="password">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </li>
+    <li class="password">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </li>
+    <li>
+      <%= f.submit %>
+    </li>
+    <li>
+      <p><%= render "devise/shared/links" %></p>
+    </li>
+  </ul>
 <% end %>
-
-<%= render "devise/shared/links" %>
-
 </div>
 </section>
 </div>
