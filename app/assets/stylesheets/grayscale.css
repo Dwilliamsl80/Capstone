@@ -368,6 +368,26 @@ position: static;
     padding-bottom: 2px;
     padding-right: 2px;
     color: white;
-    width: 60%;
+    width: 400px;
+
+}
+.padder
+{
+  position: absolute;
+
+    left: 70%;
+
+
+}
+.padder1
+{
+  position: absolute;
+
+
+}
+.padder3
+{
+  position: absolute;
+ left: 35%;
 
 }

@@ -1,5 +1,11 @@
+<style>
+a{
+  color:black;
+}
+</style>
+
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <a><%= link_to "Log in", new_session_path(resource_name) %></a><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
