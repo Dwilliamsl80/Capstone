@@ -17,12 +17,13 @@ User.create!([
   {email: "renter13@test.com", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: "", last_sign_in_ip: "", admin: false},
   {email: "renter14@test.com", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: "", last_sign_in_ip: "", admin: false},
   {email: "renter15@test.com", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: "", last_sign_in_ip: "", admin: false},
+  {email: "renter16@test.com", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: "", last_sign_in_ip: "", admin: false},  
   {email: "admin@test.com", password: "password", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 0, current_sign_in_at: nil, last_sign_in_at: nil, current_sign_in_ip: "", last_sign_in_ip: "", admin: true}
 ])
 
 Tenant.create!([
-  {user_id: 1, first_name: "Dallas", last_name: "Williams"},
-  {user_id: 2, first_name: "Adamo", last_name: "Bronzino"},
+  {user_id: 1, first_name: "David", last_name: "Burn"},
+  {user_id: 2, first_name: "Christina", last_name: "Ackerman"},
   {user_id: 3, first_name: "Yulanda", last_name: "Osborn"}
 ])
 

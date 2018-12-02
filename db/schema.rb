@@ -57,25 +57,6 @@ ActiveRecord::Schema.define(version: 20181031214137) do
     t.timestamps
   end
 
-  create_table "renters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "apartment_id", null: false
-    t.integer "user_id", null: false
-    t.string "first_name", limit: 50
-    t.string "last_name", limit: 50
-    t.datetime "contract_start"
-    t.datetime "contract_end"
-    t.boolean "leasing"
-    t.index ["apartment_id"], name: "fk_Renter_to_Apartment"
-    t.index ["user_id"], name: "fk_Renter_to_user"
-  end
-
-  create_table "tenants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user_id", null: false
-    t.string "first_name", limit: 50
-    t.string "last_name", limit: 50
-    t.index ["user_id"], name: "fk_Tenant_to_User"
-  end
-
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -97,6 +78,28 @@ ActiveRecord::Schema.define(version: 20181031214137) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  create_table "renters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.references :user
+    t.integer "apartment_id", null: false
+    t.integer "user_id", null: false
+    t.string "first_name", limit: 50
+    t.string "last_name", limit: 50
+    t.datetime "contract_start"
+    t.datetime "contract_end"
+    t.boolean "leasing"
+    t.index ["apartment_id"], name: "fk_Renter_to_Apartment"
+    t.index ["user_id"], name: "fk_Renter_to_user"
+  end
+
+  create_table "tenants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.references :user
+    t.integer "user_id", null: false
+    t.string "first_name", limit: 50
+    t.string "last_name", limit: 50
+    t.index ["user_id"], name: "fk_Tenant_to_User"
+  end
+
 
   add_foreign_key "agency_to_locations", "agencies", name: "fk_AgenciesToLocations_to_Agency"
   add_foreign_key "agency_to_locations", "locations", name: "fk_AgenciesToLocations_to_location"

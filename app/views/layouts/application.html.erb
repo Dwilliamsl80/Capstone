@@ -38,7 +38,7 @@
             <%= link_to 'Edit Profile', edit_user_registration_path, :class => "nav-link" %>
           </li>
 
-          <%if current_user.renter %>
+          <%if current_user.renter.present? %>
             <li class="nav-item">
               <%= link_to 'View Profile', current_user.renter, :class => "nav-link" %>
             </li>
@@ -47,7 +47,7 @@
             </li>
           <%end%>
 
-          <%if current_user.tenant %>
+          <%if current_user.tenant.present? %>
             <li class="nav-item">
               <%= link_to 'View Profile', current_user.tenant, :class => "nav-link" %>
             </li>
