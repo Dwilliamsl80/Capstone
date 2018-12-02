@@ -242,6 +242,36 @@ th {
                             </div>
                          <% end %>
 
+<!-- The users that have been rated by this user will show here -->
+                      <div class="form-group">
+
+                        <div class ="padder">
+                          <br>
+                        <h4 style ="color:white;"><u>Rated Users</u></h4>
+                        <% Rating.rated_users(@tenant.user).each do |rating| %>
+                        <div class ="one">
+
+                                <% user = User.find(rating.user2_id) %>
+                                <%if(!user.tenant.blank?) %>
+
+                                <label for="Rating"><h4>Rated: <%= user.tenant.first_name + " " + user.renter.last_name  %> </h4></label><br/>
+                              <%end%>
+                              <%if(!rating.rating.blank?) %>
+                                <label for="Rating"><h4>Rating: <%= rating.rating %> </h4></label><br/>
+                              <%end%>
+                              <%if(!rating.description.blank?) %>
+                              <div style = "word-wrap: break-word;"
+                                <label for="Rating"><h4>Description: <%= rating.description %> </h4></label>
+                                </div>
+                                </div>
+                              <%end%>
+                          </div>
+
+                         <% end %>
+
+                         </div>
+                      </div>
+<br>
                     
 
 

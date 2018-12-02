@@ -20,17 +20,17 @@
     <%= devise_error_messages! %>
     <%= f.fields_for :renter do |renter_fields| %>
 
-        <%= renter_fields.label :first_name %>
+        <%= renter_fields.label :first_name, "First Name" %>
         <br>
         <%= renter_fields.text_field :first_name %>
         <br>
 
-        <%= renter_fields.label :last_name %>
+        <%= renter_fields.label :last_name, "Last Name" %>
           <br>
         <%= renter_fields.text_field :last_name %>
 <br>
 
-        <%= renter_fields.label :apartment_id %>
+        <%= renter_fields.label :apartment_id ,"Apartment ID" %>
           <br>
         <%= renter_fields.text_field :apartment_id %>
 <br>
@@ -45,13 +45,13 @@
   <br>
       <%= f.password_field :password %>
 <br>
-      <%= f.label :password_confirmation %>
+      <%= f.label :password_confirmation, "Password Confirmation" %>
   <br>
       <%= f.password_field :password_confirmation %>
 <br>
 </div>
 <br>
-      <%= f.submit %>
+      <%= f.submit "Create User" %>
 
 
       <p><%= render "devise/shared/links" %></p>

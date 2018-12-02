@@ -112,12 +112,12 @@ th {
                             <label for="Address"><h4>Address: <%= @renter.apartment.apartment_complex.address %></h4></label>
                                                         </div>
                       </div>
-                      <!-- The users that this user has been rated by will show here -->
+
 
                         <label for="Rating"><h4>Overall Rating: <%= Rating.avg_rating(@renter.user) %> </h4></label><br/>
                         <br>
                         <br>
-
+                        <!--If the user is this renters tenant it will show a rating form for the renter-->
 
                         <%if current_user.id.to_i == @renter.apartment.apartment_complex.tenant.user.id.to_i  %>
                           <%if (Rating.user_rated_by_user(current_user, @renter.user)).present?%>
@@ -191,6 +191,7 @@ th {
                         <%end%>
 <div class="padder1">
   <br>
+                        <!-- The users that this user has been rated by will show here -->
                           <h4 style ="color:white;"><u>User's Ratings</u></h4>
                           <% Rating.rated_by_users(@renter.user).each do |rating| %>
 
@@ -222,7 +223,7 @@ th {
 
                         <div class ="padder">
                           <br>
-                        <h4 style ="color:white;"><u>User's Ratings Given</u></h4>
+                        <h4 style ="color:white;"><u>Rated Users</u></h4>
                         <% Rating.rated_users(@renter.user).each do |rating| %>
                         <div class ="one">
 
@@ -247,15 +248,7 @@ th {
                          </div>
                       </div>
 <br>
-              <!--If the user is this renters tenant it will show a rating form for the renter-->
-
-
-              <!--/tab-pane-->
-          <!--/tab-content-->
-
-    <!--/row-->
-
-
+            
 
   </body>
 
