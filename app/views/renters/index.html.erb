@@ -71,9 +71,9 @@ th {
     <tr>
       <div class="row">
         <div class="col-sm-10">
-      <th>Apartmentid</th>
-      <th>Full Name</th>
-<th>Leasing</th>
+        <th>Full Name</th> 
+        <th>Apartment Complex</th>
+        <th>Leasing</th>
           </tr>
   </div>
 </div>
@@ -85,11 +85,9 @@ th {
   <tbody>
     <% @renters.each do |renter| %>
         <tr>
-        <td><%= renter.apartment_id %></td>
-
-<td><%= link_to "#{renter.first_name} #{renter.last_name}", renter_path(renter.id) %></td>
-
-                <td><%= renter.leasing %></td>
+          <td><%= link_to "#{renter.first_name} #{renter.last_name}", renter_path(renter.id) %></td>
+          <td><%= renter.apartment.apartment_complex.apartment_complex_name %></td>
+          <td><%= renter.leasing %></td>
         </tr>
     <% end %>
   </tbody>

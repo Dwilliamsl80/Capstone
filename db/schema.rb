@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20181031214137) do
     t.string "last_name", limit: 50
     t.datetime "contract_start"
     t.datetime "contract_end"
-    t.boolean "leasing"
+    t.boolean "leasing", default: true
     t.index ["apartment_id"], name: "fk_Renter_to_Apartment"
     t.index ["user_id"], name: "fk_Renter_to_user"
   end
