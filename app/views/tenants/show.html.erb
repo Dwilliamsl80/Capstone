@@ -252,7 +252,7 @@ th {
                         <div class="form-group">
 <div class='pad'>
 
-                        <h4 style ="color:white;"><u>Rated by User</u></h4>
+                        <h4 style ="color:white;"><u>Rated Users</u></h4>
 <br>
                         <% Rating.rated_users(@tenant.user).each do |rating| %>
 
@@ -260,9 +260,9 @@ th {
 
 
                                 <% user = User.find(rating.user2_id) %>
-                                <%if(!user.tenant.blank?) %>
+                                <%if(!user.renter.blank?) %>
 
-                                <label for="Rating"><h4>Rated: <%= user.tenant.first_name + " " + user.tenant.last_name  %> </h4></label><br/>
+                                <label for="Rating"><h4>Rated: <%= user.renter.first_name + " " + user.renter.last_name  %> </h4></label><br/>
                               <%end%>
                               <%if(!rating.rating.blank?) %>
                                 <label for="Rating"><h4>Rating: <%= rating.rating %> </h4></label><br/>
