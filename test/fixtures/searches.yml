@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  first_name: MyString
+  last_name: MyString
+  apartment_complex_name: MyString
+  leasing: false
+
+two:
+  keywords: MyString
+  first_name: MyString
+  last_name: MyString
+  apartment_complex_name: MyString
+  leasing: false

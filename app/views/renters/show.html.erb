@@ -189,10 +189,10 @@ th {
                             <%end%>
                           <%end%>
                         <%end%>
-<div class="padder1">
+<div class="padder">
   <br>
                         <!-- The users that this user has been rated by will show here -->
-                          <h4 style ="color:white;"><u>User's Ratings</u></h4>
+                          <h4 style ="color:white;"><u>Ratings Recieved</u></h4>
                           <% Rating.rated_by_users(@renter.user).each do |rating| %>
 
                           <div class ="one">
@@ -221,7 +221,7 @@ th {
                       <!-- The users that have been rated by this user will show here -->
                       <div class="form-group">
 
-                        <div class ="padder">
+                        <div class ="padder1">
                           <br>
                         <h4 style ="color:white;"><u>Rated Users</u></h4>
                         <% Rating.rated_users(@renter.user).each do |rating| %>
