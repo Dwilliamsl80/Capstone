@@ -187,7 +187,7 @@ th {
                           </div>
                           <%end%>
                         <% else %>
-                          </div>
+
                         <%= form_tag(add_tenant_rating_path, method: "get") do %>
                         <input type="hidden" id="user1_id" name="user1_id" value="<%= current_user.id%>">
                         <input type="hidden" id="user2_id" name="user2_id" value="<%= @tenant.user.id%>">
@@ -216,12 +216,13 @@ th {
                           <%end%>
                         <%end%>
 
+<div class ="padder3">
+
+                          <h4 style ="color:white;"><u>Ratings Received</u></h4>
                           <% Rating.rated_by_users(@tenant.user).each do |r| %>
                           <br>
-
                           <div class ="one">
-
-                          <div class="col-xs-6">
+                          <div class="col-xs-6"><div class ="pad">
                                 <% user = User.find(r.user1_id) %>
                                 <%if(!user.renter.blank?) %>
                                 <label for="Rating"><h4>Rated by: <%= user.renter.first_name + " " + user.renter.last_name  %> </h4></label><br/>
@@ -236,27 +237,32 @@ th {
                                 </div>
 
                               <%end%>
-                              </div>
-                          </div>
-                          </div>
+                      </div>
+                    </div>
 
 
-                            </div>
+                      </div>
                          <% end %>
+                    </div>
+</div>
 
 <!-- The users that have been rated by this user will show here -->
-                      <div class="form-group">
 
-                        <div class ="padder">
-                          <br>
-                        <h4 style ="color:white;"><u>Rated Users</u></h4>
+  
+                        <div class="form-group">
+<div class='pad'>
+
+                        <h4 style ="color:white;"><u>Rated by User</u></h4>
+<br>
                         <% Rating.rated_users(@tenant.user).each do |rating| %>
+
                         <div class ="one">
+
 
                                 <% user = User.find(rating.user2_id) %>
                                 <%if(!user.tenant.blank?) %>
 
-                                <label for="Rating"><h4>Rated: <%= user.tenant.first_name + " " + user.renter.last_name  %> </h4></label><br/>
+                                <label for="Rating"><h4>Rated: <%= user.tenant.first_name + " " + user.tenant.last_name  %> </h4></label><br/>
                               <%end%>
                               <%if(!rating.rating.blank?) %>
                                 <label for="Rating"><h4>Rating: <%= rating.rating %> </h4></label><br/>
@@ -267,13 +273,19 @@ th {
                                 </div>
                                 </div>
                               <%end%>
-                          </div>
+<br>
 
                          <% end %>
 
-                         </div>
-                      </div>
+
+
+
 <br>
+</div>
+  </div>
+  </div>
+  </div>
+
 
 </body>
 

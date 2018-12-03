@@ -388,6 +388,11 @@ position: static;
 .padder3
 {
   position: absolute;
- left: 35%;
 
+ left: 45%;
+
+
+}
+.pad{
+  left:5%;
 }
