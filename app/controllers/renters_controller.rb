@@ -5,11 +5,15 @@ class RentersController < ApplicationController
   # GET /renters
   # GET /renters.json
   def index
-    @names = params[:search].split(" ")
-    if @names.length > 1 
-      @renters = Renter.where(["first_name LIKE ? AND last_name LIKE ?", "%#{@names[0]}%","%#{@names[1]}%"])
+    if params[:search].present?
+        @names = params[:search].split(" ")
+      if @names.length > 1 
+        @renters = Renter.where(["first_name LIKE ? AND last_name LIKE ?", "%#{@names[0]}%","%#{@names[1]}%"])
+      else
+        @renters = Renter.where(["first_name LIKE :search OR last_name LIKE :search", search: "%#{params[:search]}%"])
+      end
     else
-      @renters = Renter.where(["first_name LIKE :search OR last_name LIKE :search", search: "%#{params[:search]}%"])
+      @renters = Renter.all
     end
   end
 
