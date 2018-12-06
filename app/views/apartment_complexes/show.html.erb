@@ -41,7 +41,10 @@ th {
 <br>
 <br>
 <h1><%= @apartment_complex.apartment_complex_name %> </h1>
-<table>
+<br/>
+<%= label :currently_leasing, "Currently Leasing" %>
+<%=check_box_tag 'currently_leasing'%>
+<table id="renters">
   <tbody>
     <th>Full Name</th>
     <th>Apartment Number</th>
@@ -49,10 +52,33 @@ th {
 
     <% @apartment_complex.renters.each do |r| %>
       <tr>
-         <%= render "apartment_complex_renters_show", renter: r %>
+          
+            <%= render "apartment_complex_renters_show", renter: r %>
+          
       </tr>
     <% end %>
   </tbody>
 </table>
 </body>
 </header>
+
+<script type="text/javascript">
+  var checkbox = document.getElementById('currently_leasing');
+  var table = document.getElementById('renters');
+  checkbox.onchange = function() {
+     if(this.checked) {
+        for (var i = 0, row; row = table.rows[i]; i++) {
+          if (row.cells[2].innerHTML == "false") {
+                row.style['display'] = 'none'
+          }
+        }
+     } else {
+      for (var i = 0, row; row = table.rows[i]; i++) {
+          if (row.cells[2].innerHTML == "false") {
+                row.style['display'] = 'table-row'
+                row.style['width'] = '100%'
+          }
+        }
+     }
+  };
+</script>

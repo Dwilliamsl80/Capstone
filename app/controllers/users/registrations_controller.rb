@@ -50,8 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-     devise_parameter_sanitizer.permit(:user_picture)
+     devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :user_picture])
      
    end
 
@@ -67,12 +66,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   def configure_permitted_parameters
-    #devise_parameter_sanitizer.permit(:sign_up, :email, :password, :password_confirmation, 
-    #  [{ renter_attributes: :first_name, :last_name, :apartment_id }])
-    #params.require(:project).permit(:name,  project_criteria: [:name, :type, :benefit] )
-    devise_parameter_sanitizer.permit(:sign_up) { |u|
-      u.permit(:email, :password, :password_confirmation, :user_picture, renter_attributes: 
-        [:id, :first_name, :last_name, :apartment_id])
-    }
+    attributes = [:email, :password, :password_confirmation, :user_picture, renter_attributes: [:id, :first_name, :last_name, :apartment_id]]
+    devise_parameter_sanitizer.permit(:sign_up, keys: attributes)
+    devise_parameter_sanitizer.permit(:account_update, keys: attributes)
   end
 end
