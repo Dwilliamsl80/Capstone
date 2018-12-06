@@ -61,14 +61,17 @@ th {
 <p id="notice"><%= notice %></p>
 </br>
 <h1>Renters</h1>
+
 <%= form_tag renters_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Search" %>
 <% end %>
+<%= label :currently_leasing, "Currently Leasing" %>
+<%=check_box_tag 'currently_leasing'%>
 
 
 
-<table>
+<table id ="renters">
   <thead>
     <div class="container bootstrap snippet">
         <div class="row">
@@ -102,4 +105,25 @@ th {
 </body>
 
   </header>
+
+  <script type="text/javascript">
+  var checkbox = document.getElementById('currently_leasing');
+  var table = document.getElementById('renters');
+  checkbox.onchange = function() {
+     if(this.checked) {
+        for (var i = 0, row; row = table.rows[i]; i++) {
+          if (row.cells[2].innerHTML == "false") {
+                row.style['display'] = 'none'
+          }
+        }
+     } else {
+      for (var i = 0, row; row = table.rows[i]; i++) {
+          if (row.cells[2].innerHTML == "false") {
+                row.style['display'] = 'table-row'
+                row.style['width'] = '100%'
+          }
+        }
+     }
+  };
+</script>
 </html>
